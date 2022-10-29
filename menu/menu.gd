@@ -7,7 +7,7 @@ signal replace_main_scene
 #warning-ignore:unused_signal
 signal quit # Useless, but needed as there is no clean way to check if a node exposes a signal
 
-onready var ui = $UI
+onready var ui = $ui_viewport2dto3d.get_scene_instance()
 onready var main = ui.get_node(@"Main")
 onready var play_button = main.get_node(@"Play")
 onready var settings_button = main.get_node(@"Settings")
@@ -67,8 +67,14 @@ func _ready():
 	var sound_effects = $BackgroundCache/RedRobot/SoundEffects
 	for child in sound_effects.get_children():
 		child.unit_db = -200
-
-
+	
+	# Connect menu button signals
+	play_button.connect("pressed", self, "_on_play_pressed")
+	settings_button.connect("pressed", self, "_on_settings_pressed")
+	quit_button.connect("pressed", self, "_on_quit_pressed")
+	settings_action_apply.connect("pressed", self, "_on_apply_pressed")
+	settings_action_cancel.connect("pressed", self, "_on_cancel_pressed")
+	
 func interactive_load(loader):
 	while true:
 		var status = loader.poll()

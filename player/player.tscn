@@ -175,7 +175,7 @@ y_label = "gun"
 
 [sub_resource type="AnimationNodeBlendTree" id=30]
 resource_local_to_scene = true
-graph_offset = Vector2( -789, -157 )
+graph_offset = Vector2( -435.025, 38.3047 )
 nodes/aim/node = SubResource( 9 )
 nodes/aim/position = Vector2( 380, 120 )
 nodes/aimdown/node = SubResource( 10 )
@@ -205,7 +205,7 @@ nodes/walk/node = SubResource( 29 )
 nodes/walk/position = Vector2( -460, 40 )
 nodes/walk_speed/node = SubResource( 36 )
 nodes/walk_speed/position = Vector2( -280, 60 )
-node_connections = [ "state", 0, "strafe_speed", "state", 1, "walk_speed", "state", 2, "jumpup", "state", 3, "jumpdown", "output", 0, "eye_blend", "walk_speed", 0, "walk", "aim", 0, "aimdown", "aim", 1, "land", "aim", 2, "aimup", "eye_blend", 0, "aim", "eye_blend", 1, "eyes", "land", 0, "state", "land", 1, "hardland", "strafe_speed", 0, "strafe" ]
+node_connections = [ "state", 0, "strafe_speed", "state", 1, "walk_speed", "state", 2, "jumpup", "state", 3, "jumpdown", "output", 0, "eye_blend", "strafe_speed", 0, "strafe", "walk_speed", 0, "walk", "aim", 0, "aimdown", "aim", 1, "land", "aim", 2, "aimup", "eye_blend", 0, "aim", "eye_blend", 1, "eyes", "land", 0, "state", "land", 1, "hardland" ]
 
 [sub_resource type="CapsuleShape" id=31]
 radius = 0.5
@@ -282,7 +282,7 @@ transform = Transform( 0.803991, 0, 0, 0, 0.803991, 0, 0, 0, 0.803991, 0, 0, 0 )
 bones/55/bound_children = [ NodePath("GunBone") ]
 
 [node name="GunBone" type="BoneAttachment" parent="PlayerModel/Robot_Skeleton/Skeleton" index="5"]
-transform = Transform( 0.923127, -0.382575, -0.041099, -0.0231363, 0.0514465, -0.998416, 0.384127, 0.922491, 0.0386362, -0.205969, 1.38162, 0.508228 )
+transform = Transform( 0.928271, -0.366247, -0.0662891, -0.0187993, 0.131752, -0.991112, 0.37177, 0.921143, 0.115402, -0.207098, 1.38674, 0.471515 )
 bone_name = "hand.R"
 
 [node name="ShootFrom" type="Position3D" parent="PlayerModel/Robot_Skeleton/Skeleton/GunBone"]

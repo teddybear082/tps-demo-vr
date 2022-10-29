@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/godot_vr_splash_screen/GodotSplash.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot_vr_splash_screen/OQ_SplashScreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/godot_vr_splash_screen/Go_Dough_Game_Engine_912.mp3" type="AudioStream" id=3]
+
+[node name="GodotSplash" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="OQ_SplashScreen" parent="." instance=ExtResource( 2 )]
+
+[node name="Voiceover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

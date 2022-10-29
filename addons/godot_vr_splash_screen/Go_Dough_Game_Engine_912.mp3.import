@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Go_Dough_Game_Engine_912.mp3-744744c4f5ce50a93b0ba937a7dc6b61.mp3str"
+
+[deps]
+
+source_file="res://addons/godot_vr_splash_screen/Go_Dough_Game_Engine_912.mp3"
+dest_files=[ "res://.import/Go_Dough_Game_Engine_912.mp3-744744c4f5ce50a93b0ba937a7dc6b61.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,23 +1,21 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://menu/menu.gd" type="Script" id=1]
 [ext_resource path="res://menu/experiment.hdr" type="Texture" id=2]
 [ext_resource path="res://player/model/player.glb" type="PackedScene" id=3]
 [ext_resource path="res://menu/floor.png" type="Texture" id=4]
 [ext_resource path="res://menu/menu_intro_music.ogg" type="AudioStream" id=5]
-[ext_resource path="res://menu/tps_demo.png" type="Texture" id=6]
-[ext_resource path="res://menu/button_play.png" type="Texture" id=7]
-[ext_resource path="res://menu/button_play_hover.png" type="Texture" id=8]
-[ext_resource path="res://menu/button_settings.png" type="Texture" id=9]
-[ext_resource path="res://menu/button_settings_hover.png" type="Texture" id=10]
-[ext_resource path="res://menu/button_quit.png" type="Texture" id=11]
-[ext_resource path="res://menu/button_quit_hover.png" type="Texture" id=12]
-[ext_resource path="res://menu/button_font.tres" type="DynamicFont" id=13]
-[ext_resource path="res://menu/button_pressed.tres" type="StyleBox" id=14]
-[ext_resource path="res://menu/button_normal.tres" type="StyleBox" id=15]
-[ext_resource path="res://menu/button_focus.tres" type="StyleBox" id=16]
-[ext_resource path="res://menu/button_hover.tres" type="StyleBox" id=17]
-[ext_resource path="res://menu/button_action_pressed.tres" type="StyleBox" id=18]
+[ext_resource path="res://menu/ui_viewport2dto3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_direct.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/godot-xr-tools/functions/function_pointer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/godot-xr-tools/assets/left_physics_hand.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/godot-xr-tools/assets/poke.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_turn.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/godot-xr-tools/assets/right_physics_hand.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/godot-xr-tools/assets/player_body.gd" type="Script" id=15]
+[ext_resource path="res://addons/godot-xr-tools/assets/player_body.tscn" type="PackedScene" id=16]
 [ext_resource path="res://enemies/red_robot/red_robot.tscn" type="PackedScene" id=19]
 [ext_resource path="res://player/bullet/bullet.tscn" type="PackedScene" id=20]
 
@@ -40,6 +38,9 @@ size = Vector2( 15, 15 )
 [sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 4 )
 metallic = 0.78
+
+[sub_resource type="BoxShape" id=22]
+extents = Vector3( 10, 0.05, 10 )
 
 [sub_resource type="AnimationNodeBlend2" id=5]
 resource_local_to_scene = true
@@ -64,76 +65,7 @@ nodes/CombatRest/position = Vector2( -120, 100 )
 nodes/Eyes/node = SubResource( 7 )
 nodes/Eyes/position = Vector2( -40, 220 )
 nodes/output/position = Vector2( 420, 120 )
-node_connections = [ "output", 0, "Blend", "Blend", 0, "CombatRest", "Blend", 1, "Eyes" ]
-
-[sub_resource type="Theme" id=9]
-Button/colors/font_color = Color( 1, 1, 1, 1 )
-Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
-Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
-Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
-Button/constants/hseparation = 2
-Button/fonts/font = ExtResource( 13 )
-Button/styles/disabled = null
-Button/styles/focus = ExtResource( 16 )
-Button/styles/hover = ExtResource( 17 )
-Button/styles/normal = ExtResource( 15 )
-Button/styles/pressed = ExtResource( 14 )
-Label/colors/font_color = Color( 1, 1, 1, 1 )
-Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
-Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-Label/constants/line_spacing = 3
-Label/constants/shadow_as_outline = 0
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
-Label/fonts/font = ExtResource( 13 )
-Label/styles/normal = null
-
-[sub_resource type="ButtonGroup" id=10]
-
-[sub_resource type="ButtonGroup" id=11]
-
-[sub_resource type="ButtonGroup" id=23]
-
-[sub_resource type="ButtonGroup" id=22]
-
-[sub_resource type="ButtonGroup" id=12]
-
-[sub_resource type="ButtonGroup" id=13]
-
-[sub_resource type="ButtonGroup" id=14]
-
-[sub_resource type="ButtonGroup" id=15]
-
-[sub_resource type="DynamicFontData" id=16]
-font_path = "res://menu/font/PT_Sans-Web-Bold.ttf"
-
-[sub_resource type="DynamicFont" id=17]
-size = 40
-font_data = SubResource( 16 )
-
-[sub_resource type="StyleBoxFlat" id=18]
-bg_color = Color( 0.278431, 0.278431, 0.360784, 1 )
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color( 0, 0, 0, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0.0901961, 0.0784314, 0.117647, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0, 0, 0, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+node_connections = [ "Blend", 0, "CombatRest", "Blend", 1, "Eyes", "output", 0, "Blend" ]
 
 [sub_resource type="BoxShape" id=20]
 extents = Vector3( 2, 1, 2 )
@@ -162,18 +94,176 @@ __meta__ = {
 "_editor_description_": "There must be an AudioStreamPlayer node at the path \"SoundEffects/Step\" next to the player model, anywhere that the player model is instanced. This is to prevent the animation from deleting the step from the track."
 }
 
+[node name="ui_viewport2dto3d" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.249066, 1.06285, 0.761951 )
+
+[node name="FPController" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.22144 )
+
+[node name="ARVRCamera" parent="FPController" index="1"]
+far = 1000.0
+
+[node name="VRCommonShaderCache" parent="FPController/ARVRCamera" index="0" instance=ExtResource( 12 )]
+
+[node name="LeftPhysicsHand" parent="FPController/LeftHandController" index="0" instance=ExtResource( 10 )]
+collision_layer = 131072
+margin = 0.004
+
+[node name="BoneRoot" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="1"]
+transform = Transform( 1, -2.50192e-40, 1.51496e-08, 1.51445e-08, -0.025905, -0.999665, 3.92449e-10, 0.999664, -0.025905, 7.2293e-21, 0.000360775, -0.0235019 )
+
+[node name="BoneThumbMetacarpal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="2"]
+transform = Transform( 0.858407, -0.510964, 0.0453197, 0.393499, 0.599231, -0.697195, 0.329085, 0.61631, 0.715447, 1.44628e-08, -0.000522292, 0.0105753 )
+
+[node name="BoneThumbProximal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="3"]
+transform = Transform( 0.653204, -0.575626, 0.491913, 0.637544, 0.0676378, -0.767439, 0.408486, 0.814911, 0.411168, -0.0307404, 0.0355286, 0.0476535 )
+
+[node name="BoneThumbDistal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="4"]
+transform = Transform( 0.641228, -0.57023, 0.513483, 0.627228, 0.00400403, -0.778826, 0.442053, 0.821475, 0.360232, -0.0537614, 0.0382334, 0.0802443 )
+
+[node name="BoneIndexMetacarpal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="5"]
+transform = Transform( 0.999276, 0.0112952, -0.0363351, -0.0380494, 0.303049, -0.952215, 0.000255822, 0.952908, 0.303259, -1.17901e-10, -0.000522291, 0.0105752 )
+
+[node name="BoneIndexProximal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="6"]
+transform = Transform( 0.993643, 0.108167, -0.0311928, -0.0593467, 0.26786, -0.961629, -0.0956611, 0.957367, 0.272577, 0.00100868, 0.0265468, 0.0956918 )
+
+[node name="BoneIndexMiddle" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="7"]
+transform = Transform( 0.984049, -0.177367, -0.0137285, -0.020051, -0.0339034, -0.999224, 0.176764, 0.983561, -0.0369191, 0.00468414, 0.0356487, 0.128223 )
+
+[node name="BoneIndexDistal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="8"]
+transform = Transform( 0.927501, -0.373365, 0.0184361, -0.00490146, -0.0614605, -0.998098, 0.373788, 0.925646, -0.0588348, -0.000317366, 0.0346926, 0.155956 )
+
+[node name="Poke" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton/BoneIndexDistal" index="0" instance=ExtResource( 11 )]
+
+[node name="BoneMiddleMetacarpal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="9"]
+transform = Transform( 0.996581, 0.0825, 0.00438378, -0.00516692, 0.115197, -0.993329, -0.0824547, 0.98991, 0.11523, -2.08602e-09, -0.000522293, 0.0105753 )
+
+[node name="BoneMiddleProximal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="10"]
+transform = Transform( 0.999226, 0.0393314, 0.00018736, 0.00211799, -0.0490505, -0.998794, -0.0392748, 0.998021, -0.0490958, 0.00712923, 0.00943249, 0.0961184 )
+
+[node name="BoneMiddleMiddle" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="11"]
+transform = Transform( 0.90112, -0.432901, 0.0240869, -0.0456923, -0.150064, -0.98762, 0.431156, 0.888863, -0.155006, 0.00830444, 0.00796703, 0.125936 )
+
+[node name="BoneMiddleDistal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="12"]
+transform = Transform( 0.723534, -0.690285, 0.00243967, -0.172605, -0.184338, -0.967588, 0.668361, 0.699661, -0.252521, -0.00511784, 0.0033142, 0.153496 )
+
+[node name="BoneRingMetacarpal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="13"]
+transform = Transform( 0.999009, 0.0444944, -0.000672045, 0.00788389, -0.191836, -0.981395, -0.0437955, 0.980418, -0.191997, -3.14338e-09, -0.000522293, 0.0105753 )
+
+[node name="BoneRingProximal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="14"]
+transform = Transform( 0.993169, 0.116494, -0.00670008, 0.0117931, -0.157336, -0.987475, -0.116089, 0.98065, -0.157635, 0.00351231, -0.015666, 0.0879703 )
+
+[node name="BoneRingMiddle" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="15"]
+transform = Transform( 0.865561, -0.498619, -0.0467217, -0.166109, -0.19783, -0.96606, 0.472453, 0.843944, -0.254059, 0.00682499, -0.0201401, 0.115857 )
+
+[node name="BoneRingDistal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="16"]
+transform = Transform( 0.475025, -0.861852, -0.17766, -0.499622, -0.0979557, -0.860687, 0.724381, 0.497611, -0.477131, -0.00622966, -0.0253195, 0.137952 )
+
+[node name="BonePinkyMetacarpal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="17"]
+transform = Transform( 0.999813, 0.0166299, 0.00978245, 0.016408, -0.466135, -0.884562, -0.0101502, 0.884557, -0.466321, 3.16697e-10, -0.000522297, 0.0105754 )
+
+[node name="BonePinkyProximal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="18"]
+transform = Transform( 0.98895, -0.147942, -0.00946361, -0.0522291, -0.287969, -0.956215, 0.138739, 0.946143, -0.292514, 0.00128954, -0.0366702, 0.0791712 )
+
+[node name="BonePinkyMiddle" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="19"]
+transform = Transform( 0.740024, -0.658406, -0.137349, -0.308624, -0.150972, -0.939127, 0.597591, 0.737366, -0.314923, -0.00162087, -0.0423355, 0.0977853 )
+
+[node name="BonePinkyDistal" parent="FPController/LeftHandController/LeftPhysicsHand/LeftHand/Armature_Left/Skeleton" index="20"]
+transform = Transform( 0.463311, -0.822464, -0.329992, -0.51281, 0.0548708, -0.856747, 0.722751, 0.566164, -0.396346, -0.0115324, -0.0446074, 0.108884 )
+
+[node name="MovementDirect" parent="FPController/LeftHandController" index="1" instance=ExtResource( 7 )]
+enabled = true
+order = 10
+max_speed = 4.0
+strafe = true
+
+[node name="FunctionPointer" parent="FPController/RightHandController" index="0" instance=ExtResource( 9 )]
+laser_length = 1
+
+[node name="MovementTurn" parent="FPController/RightHandController" index="1" instance=ExtResource( 13 )]
+
+[node name="RightPhysicsHand" parent="FPController/RightHandController" index="2" instance=ExtResource( 14 )]
+collision_layer = 131072
+margin = 0.004
+
+[node name="BoneRoot" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="1"]
+transform = Transform( 1, -2.50192e-40, 1.51496e-08, 1.51445e-08, -0.025905, -0.999665, 3.92449e-10, 0.999664, -0.025905, 7.2293e-21, 0.000360775, -0.0235019 )
+
+[node name="BoneThumbMetacarpal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="2"]
+transform = Transform( 0.858407, -0.510964, 0.0453197, 0.393499, 0.599231, -0.697195, 0.329085, 0.61631, 0.715447, 1.44628e-08, -0.000522292, 0.0105753 )
+
+[node name="BoneThumbProximal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="3"]
+transform = Transform( 0.653204, -0.575626, 0.491913, 0.637544, 0.0676378, -0.767439, 0.408486, 0.814911, 0.411168, -0.0307404, 0.0355286, 0.0476535 )
+
+[node name="BoneThumbDistal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="4"]
+transform = Transform( 0.641228, -0.57023, 0.513483, 0.627228, 0.00400403, -0.778826, 0.442053, 0.821475, 0.360232, -0.0537614, 0.0382334, 0.0802443 )
+
+[node name="BoneIndexMetacarpal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="5"]
+transform = Transform( 0.999276, 0.0112952, -0.0363351, -0.0380494, 0.303049, -0.952215, 0.000255822, 0.952908, 0.303259, -1.17901e-10, -0.000522291, 0.0105752 )
+
+[node name="BoneIndexProximal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="6"]
+transform = Transform( 0.993643, 0.108167, -0.0311928, -0.0593467, 0.26786, -0.961629, -0.0956611, 0.957367, 0.272577, 0.00100868, 0.0265468, 0.0956918 )
+
+[node name="BoneIndexMiddle" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="7"]
+transform = Transform( 0.984049, -0.177367, -0.0137285, -0.020051, -0.0339034, -0.999224, 0.176764, 0.983561, -0.0369191, 0.00468414, 0.0356487, 0.128223 )
+
+[node name="BoneIndexDistal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="8"]
+transform = Transform( 0.927501, -0.373365, 0.0184361, -0.00490146, -0.0614605, -0.998098, 0.373788, 0.925646, -0.0588348, -0.000317366, 0.0346926, 0.155956 )
+
+[node name="BoneMiddleMetacarpal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="9"]
+transform = Transform( 0.996581, 0.0825, 0.00438378, -0.00516692, 0.115197, -0.993329, -0.0824547, 0.98991, 0.11523, -2.08602e-09, -0.000522293, 0.0105753 )
+
+[node name="BoneMiddleProximal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="10"]
+transform = Transform( 0.999226, 0.0393314, 0.00018736, 0.00211799, -0.0490505, -0.998794, -0.0392748, 0.998021, -0.0490958, 0.00712923, 0.00943249, 0.0961184 )
+
+[node name="BoneMiddleMiddle" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="11"]
+transform = Transform( 0.90112, -0.432901, 0.0240869, -0.0456923, -0.150064, -0.98762, 0.431156, 0.888863, -0.155006, 0.00830444, 0.00796703, 0.125936 )
+
+[node name="BoneMiddleDistal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="12"]
+transform = Transform( 0.723534, -0.690285, 0.00243967, -0.172605, -0.184338, -0.967588, 0.668361, 0.699661, -0.252521, -0.00511784, 0.0033142, 0.153496 )
+
+[node name="BoneRingMetacarpal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="13"]
+transform = Transform( 0.999009, 0.0444944, -0.000672045, 0.00788389, -0.191836, -0.981395, -0.0437955, 0.980418, -0.191997, -3.14338e-09, -0.000522293, 0.0105753 )
+
+[node name="BoneRingProximal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="14"]
+transform = Transform( 0.993169, 0.116494, -0.00670008, 0.0117931, -0.157336, -0.987475, -0.116089, 0.98065, -0.157635, 0.00351231, -0.015666, 0.0879703 )
+
+[node name="BoneRingMiddle" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="15"]
+transform = Transform( 0.865561, -0.498619, -0.0467217, -0.166109, -0.19783, -0.96606, 0.472453, 0.843944, -0.254059, 0.00682499, -0.0201401, 0.115857 )
+
+[node name="BoneRingDistal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="16"]
+transform = Transform( 0.475025, -0.861852, -0.17766, -0.499622, -0.0979557, -0.860687, 0.724381, 0.497611, -0.477131, -0.00622966, -0.0253195, 0.137952 )
+
+[node name="BonePinkyMetacarpal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="17"]
+transform = Transform( 0.999813, 0.0166299, 0.00978245, 0.016408, -0.466135, -0.884562, -0.0101502, 0.884557, -0.466321, 3.16697e-10, -0.000522297, 0.0105754 )
+
+[node name="BonePinkyProximal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="18"]
+transform = Transform( 0.98895, -0.147942, -0.00946361, -0.0522291, -0.287969, -0.956215, 0.138739, 0.946143, -0.292514, 0.00128954, -0.0366702, 0.0791712 )
+
+[node name="BonePinkyMiddle" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="19"]
+transform = Transform( 0.740024, -0.658406, -0.137349, -0.308624, -0.150972, -0.939127, 0.597591, 0.737366, -0.314923, -0.00162087, -0.0423355, 0.0977853 )
+
+[node name="BonePinkyDistal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="20"]
+transform = Transform( 0.463311, -0.822464, -0.329992, -0.51281, 0.0548708, -0.856747, 0.722751, 0.566164, -0.396346, -0.0115324, -0.0446074, 0.108884 )
+
+[node name="PlayerBody" type="Node" parent="FPController" instance=ExtResource( 16 )]
+script = ExtResource( 15 )
+
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
+[node name="StaticBody" type="StaticBody" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.05, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
+shape = SubResource( 22 )
+
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 0.967027, 0, 0.254675, -0.225291, 0.466312, 0.855452, -0.118758, -0.88462, 0.450936, 0.557445, 2.31204, 0.556668 )
 shadow_enabled = true
 shadow_bias = 0.01
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.871624, -0.0363083, 0.488828, 0, 0.997253, 0.0740721, -0.490175, -0.064563, 0.86923, 0.0702285, 1.22404, 2.09675 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -184,508 +274,6 @@ tree_root = SubResource( 8 )
 anim_player = NodePath("../PlayerModel/AnimationPlayer")
 active = true
 parameters/Blend/blend_amount = 1.0
-
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 20.1403
-margin_top = 5.03506
-margin_right = 1044.14
-margin_bottom = 238.035
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UI" type="Control" parent="."]
-anchor_left = 0.00106799
-anchor_right = 1.00107
-anchor_bottom = 1.0
-theme = SubResource( 9 )
-
-[node name="Main" type="Control" parent="UI"]
-anchor_left = -0.000673103
-anchor_top = -0.00189865
-anchor_right = 0.999327
-anchor_bottom = 0.998101
-margin_left = -4.10107
-margin_top = 2.05054
-margin_right = -4.10107
-margin_bottom = 2.05054
-
-[node name="Play" type="TextureButton" parent="UI/Main"]
-margin_left = 100.0
-margin_top = 390.0
-margin_right = 400.0
-margin_bottom = 440.0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Settings" type="TextureButton" parent="UI/Main"]
-margin_left = 100.0
-margin_top = 490.0
-margin_right = 400.0
-margin_bottom = 540.0
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 9 )
-texture_hover = ExtResource( 10 )
-
-[node name="Quit" type="TextureButton" parent="UI/Main"]
-margin_left = 100.0
-margin_top = 590.0
-margin_right = 400.0
-margin_bottom = 640.0
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 11 )
-texture_hover = ExtResource( 12 )
-
-[node name="Settings" type="VBoxContainer" parent="UI"]
-visible = false
-anchor_left = 0.109896
-anchor_top = 0.23148
-anchor_right = 0.808854
-anchor_bottom = 1.00278
-custom_constants/separation = 25
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="GI" type="HBoxContainer" parent="UI/Settings"]
-margin_right = 1342.0
-margin_bottom = 57.0
-custom_constants/separation = 30
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Settings/GI"]
-margin_top = 2.0
-margin_right = 400.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 400, 0 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Global Illumination:"
-
-[node name="High" type="Button" parent="UI/Settings/GI"]
-margin_left = 430.0
-margin_right = 714.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 10 )
-text = "High"
-
-[node name="Low" type="Button" parent="UI/Settings/GI"]
-margin_left = 744.0
-margin_right = 1028.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 10 )
-text = "Low"
-
-[node name="Disabled" type="Button" parent="UI/Settings/GI"]
-margin_left = 1058.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 10 )
-text = "Disabled"
-
-[node name="AA" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 82.0
-margin_right = 1342.0
-margin_bottom = 139.0
-custom_constants/separation = 30
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Settings/AA"]
-margin_right = 400.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 400, 0 )
-size_flags_vertical = 1
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Antialiasing (MSAA):"
-
-[node name="8X" type="Button" parent="UI/Settings/AA"]
-margin_left = 430.0
-margin_right = 635.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 11 )
-text = "8x"
-
-[node name="4X" type="Button" parent="UI/Settings/AA"]
-margin_left = 665.0
-margin_right = 871.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 11 )
-text = "4x"
-
-[node name="2X" type="Button" parent="UI/Settings/AA"]
-margin_left = 901.0
-margin_right = 1106.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 11 )
-text = "2x"
-
-[node name="Disabled" type="Button" parent="UI/Settings/AA"]
-margin_left = 1136.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 11 )
-text = "Disabled"
-
-[node name="FXAA" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 164.0
-margin_right = 1342.0
-margin_bottom = 221.0
-custom_constants/separation = 30
-
-[node name="Label" type="Label" parent="UI/Settings/FXAA"]
-margin_right = 400.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 400, 0 )
-size_flags_vertical = 1
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Antialiasing (FXAA):"
-
-[node name="Enabled" type="Button" parent="UI/Settings/FXAA"]
-margin_left = 430.0
-margin_right = 871.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-keep_pressed_outside = true
-group = SubResource( 23 )
-text = "Enabled"
-
-[node name="Disabled" type="Button" parent="UI/Settings/FXAA"]
-margin_left = 901.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 23 )
-text = "Disabled"
-
-[node name="Shadow" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 246.0
-margin_right = 1342.0
-margin_bottom = 303.0
-custom_constants/separation = 30
-
-[node name="Label" type="Label" parent="UI/Settings/Shadow"]
-margin_top = 2.0
-margin_right = 400.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 400, 0 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Shadow Mapping:"
-
-[node name="Enabled" type="Button" parent="UI/Settings/Shadow"]
-margin_left = 430.0
-margin_right = 871.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 22 )
-text = "Enabled"
-
-[node name="Disabled" type="Button" parent="UI/Settings/Shadow"]
-margin_left = 901.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 22 )
-text = "Disabled"
-
-[node name="SSAO" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 328.0
-margin_right = 1342.0
-margin_bottom = 385.0
-custom_constants/separation = 30
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Settings/SSAO"]
-margin_right = 400.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 400, 0 )
-size_flags_vertical = 1
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "SSAO:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="High" type="Button" parent="UI/Settings/SSAO"]
-margin_left = 430.0
-margin_right = 714.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 12 )
-text = "High"
-
-[node name="Low" type="Button" parent="UI/Settings/SSAO"]
-margin_left = 744.0
-margin_right = 1028.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 12 )
-text = "Low"
-
-[node name="Disabled" type="Button" parent="UI/Settings/SSAO"]
-margin_left = 1058.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 12 )
-text = "Disabled"
-
-[node name="Bloom" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 410.0
-margin_right = 1342.0
-margin_bottom = 467.0
-custom_constants/separation = 30
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Label" type="Label" parent="UI/Settings/Bloom"]
-margin_right = 400.0
-margin_bottom = 57.0
-rect_min_size = Vector2( 400, 0 )
-size_flags_vertical = 1
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Bloom:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="High" type="Button" parent="UI/Settings/Bloom"]
-margin_left = 430.0
-margin_right = 714.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 13 )
-text = "High"
-
-[node name="Low" type="Button" parent="UI/Settings/Bloom"]
-margin_left = 744.0
-margin_right = 1028.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 13 )
-text = "Low"
-
-[node name="Disabled" type="Button" parent="UI/Settings/Bloom"]
-margin_left = 1058.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 13 )
-text = "Disabled"
-
-[node name="Resolution" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 492.0
-margin_right = 1342.0
-margin_bottom = 549.0
-custom_constants/separation = 30
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Label" type="Label" parent="UI/Settings/Resolution"]
-margin_top = 2.0
-margin_right = 400.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 400, 0 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Resolution:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Native" type="Button" parent="UI/Settings/Resolution"]
-margin_left = 430.0
-margin_right = 635.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 14 )
-text = "Native"
-
-[node name="1080" type="Button" parent="UI/Settings/Resolution"]
-margin_left = 665.0
-margin_right = 871.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 14 )
-text = "1080"
-
-[node name="720" type="Button" parent="UI/Settings/Resolution"]
-margin_left = 901.0
-margin_right = 1106.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 14 )
-text = "720"
-
-[node name="540" type="Button" parent="UI/Settings/Resolution"]
-margin_left = 1136.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 14 )
-text = "540"
-
-[node name="Fullscreen" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 574.0
-margin_right = 1342.0
-margin_bottom = 631.0
-custom_constants/separation = 30
-
-[node name="Label" type="Label" parent="UI/Settings/Fullscreen"]
-margin_top = 2.0
-margin_right = 400.0
-margin_bottom = 55.0
-rect_min_size = Vector2( 400, 0 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Fullscreen"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Yes" type="Button" parent="UI/Settings/Fullscreen"]
-margin_left = 430.0
-margin_right = 871.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-pressed = true
-group = SubResource( 15 )
-text = "Yes"
-
-[node name="No" type="Button" parent="UI/Settings/Fullscreen"]
-margin_left = 901.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-toggle_mode = true
-group = SubResource( 15 )
-text = "No"
-
-[node name="HSeparator" type="HSeparator" parent="UI/Settings"]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 656.0
-margin_right = 1342.0
-margin_bottom = 676.0
-rect_min_size = Vector2( 0, 20 )
-
-[node name="Actions" type="HBoxContainer" parent="UI/Settings"]
-margin_top = 701.0
-margin_right = 1342.0
-margin_bottom = 758.0
-custom_constants/separation = 50
-
-[node name="Apply" type="Button" parent="UI/Settings/Actions"]
-margin_right = 646.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 17 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 18 )
-text = "Apply"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cancel" type="Button" parent="UI/Settings/Actions"]
-margin_left = 696.0
-margin_right = 1342.0
-margin_bottom = 57.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 17 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 18 )
-text = "Cancel"
-
-[node name="Loading" type="HBoxContainer" parent="UI"]
-visible = false
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = -135.0
-margin_right = -130.0
-margin_bottom = -100.0
-custom_constants/separation = 100
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Loading"]
-margin_right = 168.0
-margin_bottom = 53.0
-custom_fonts/font = ExtResource( 13 )
-text = "Loading..."
-
-[node name="Progress" type="ProgressBar" parent="UI/Loading"]
-margin_left = 268.0
-margin_right = 1690.0
-margin_bottom = 53.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-custom_styles/fg = SubResource( 18 )
-custom_styles/bg = SubResource( 19 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DoneTimer" type="Timer" parent="UI/Loading"]
-wait_time = 0.5
-one_shot = true
 
 [node name="BackgroundCache" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -10, -10 )
@@ -719,12 +307,10 @@ transform = Transform( -1, 8.4334e-08, 3.14739e-07, 0, 0.965926, -0.258819, -3.2
 [node name="ExplosionAudio" parent="BackgroundCache/Bullet" index="4"]
 unit_db = -80.0
 
-[connection signal="pressed" from="UI/Main/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="UI/Main/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="UI/Main/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="UI/Settings/Actions/Apply" to="." method="_on_apply_pressed"]
-[connection signal="pressed" from="UI/Settings/Actions/Cancel" to="." method="_on_cancel_pressed"]
-[connection signal="timeout" from="UI/Loading/DoneTimer" to="." method="_on_loading_done_timer_timeout"]
-
 [editable path="PlayerModel"]
+[editable path="FPController"]
+[editable path="FPController/LeftHandController/LeftPhysicsHand"]
+[editable path="FPController/LeftHandController/LeftPhysicsHand/LeftHand"]
+[editable path="FPController/RightHandController/RightPhysicsHand"]
+[editable path="FPController/RightHandController/RightPhysicsHand/RightHand"]
 [editable path="BackgroundCache/Bullet"]

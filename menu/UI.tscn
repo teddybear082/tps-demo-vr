@@ -1,0 +1,590 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://menu/VR.png" type="Texture" id=1]
+[ext_resource path="res://menu/button_quit.png" type="Texture" id=2]
+[ext_resource path="res://menu/button_settings_hover.png" type="Texture" id=3]
+[ext_resource path="res://menu/button_play_hover.png" type="Texture" id=4]
+[ext_resource path="res://menu/button_play.png" type="Texture" id=5]
+[ext_resource path="res://menu/button_settings.png" type="Texture" id=6]
+[ext_resource path="res://menu/button_quit_hover.png" type="Texture" id=7]
+[ext_resource path="res://menu/button_hover.tres" type="StyleBox" id=8]
+[ext_resource path="res://menu/button_action_pressed.tres" type="StyleBox" id=9]
+[ext_resource path="res://menu/button_pressed.tres" type="StyleBox" id=10]
+[ext_resource path="res://menu/button_font.tres" type="DynamicFont" id=11]
+[ext_resource path="res://menu/button_normal.tres" type="StyleBox" id=12]
+[ext_resource path="res://menu/button_focus.tres" type="StyleBox" id=13]
+[ext_resource path="res://menu/tps_demo_vr.png" type="Texture" id=14]
+
+[sub_resource type="Theme" id=9]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 11 )
+Button/styles/disabled = null
+Button/styles/focus = ExtResource( 13 )
+Button/styles/hover = ExtResource( 8 )
+Button/styles/normal = ExtResource( 12 )
+Button/styles/pressed = ExtResource( 10 )
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = ExtResource( 11 )
+Label/styles/normal = null
+
+[sub_resource type="ButtonGroup" id=10]
+
+[sub_resource type="ButtonGroup" id=11]
+
+[sub_resource type="ButtonGroup" id=23]
+
+[sub_resource type="ButtonGroup" id=22]
+
+[sub_resource type="ButtonGroup" id=12]
+
+[sub_resource type="ButtonGroup" id=13]
+
+[sub_resource type="ButtonGroup" id=14]
+
+[sub_resource type="ButtonGroup" id=15]
+
+[sub_resource type="DynamicFontData" id=16]
+font_path = "res://menu/font/PT_Sans-Web-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=17]
+size = 40
+font_data = SubResource( 16 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.278431, 0.278431, 0.360784, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.0901961, 0.0784314, 0.117647, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="UI" type="Control"]
+anchor_left = 0.00106799
+anchor_right = 1.00107
+anchor_bottom = 1.0
+theme = SubResource( 9 )
+
+[node name="Main" type="Control" parent="."]
+anchor_left = -0.000673103
+anchor_top = -0.00189865
+anchor_right = 0.999327
+anchor_bottom = 0.998101
+margin_left = -4.10107
+margin_top = 2.05054
+margin_right = -4.10107
+margin_bottom = 2.05054
+
+[node name="Play" type="TextureButton" parent="Main"]
+margin_left = 100.0
+margin_top = 390.0
+margin_right = 400.0
+margin_bottom = 440.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="TextureButton" parent="Main"]
+margin_left = 100.0
+margin_top = 490.0
+margin_right = 400.0
+margin_bottom = 540.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+
+[node name="Quit" type="TextureButton" parent="Main"]
+margin_left = 100.0
+margin_top = 590.0
+margin_right = 400.0
+margin_bottom = 640.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 7 )
+
+[node name="Settings" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.109896
+anchor_top = 0.23148
+anchor_right = 0.808854
+anchor_bottom = 1.00278
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="GI" type="HBoxContainer" parent="Settings"]
+margin_right = 1342.0
+margin_bottom = 57.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Settings/GI"]
+margin_top = 2.0
+margin_right = 400.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 400, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Global Illumination:"
+
+[node name="High" type="Button" parent="Settings/GI"]
+margin_left = 430.0
+margin_right = 714.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 10 )
+text = "High"
+
+[node name="Low" type="Button" parent="Settings/GI"]
+margin_left = 744.0
+margin_right = 1028.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 10 )
+text = "Low"
+
+[node name="Disabled" type="Button" parent="Settings/GI"]
+margin_left = 1058.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 10 )
+text = "Disabled"
+
+[node name="AA" type="HBoxContainer" parent="Settings"]
+margin_top = 82.0
+margin_right = 1342.0
+margin_bottom = 139.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Settings/AA"]
+margin_right = 400.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_vertical = 1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Antialiasing (MSAA):"
+
+[node name="8X" type="Button" parent="Settings/AA"]
+margin_left = 430.0
+margin_right = 635.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 11 )
+text = "8x"
+
+[node name="4X" type="Button" parent="Settings/AA"]
+margin_left = 665.0
+margin_right = 871.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 11 )
+text = "4x"
+
+[node name="2X" type="Button" parent="Settings/AA"]
+margin_left = 901.0
+margin_right = 1106.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 11 )
+text = "2x"
+
+[node name="Disabled" type="Button" parent="Settings/AA"]
+margin_left = 1136.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 11 )
+text = "Disabled"
+
+[node name="FXAA" type="HBoxContainer" parent="Settings"]
+margin_top = 164.0
+margin_right = 1342.0
+margin_bottom = 221.0
+custom_constants/separation = 30
+
+[node name="Label" type="Label" parent="Settings/FXAA"]
+margin_right = 400.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_vertical = 1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Antialiasing (FXAA):"
+
+[node name="Enabled" type="Button" parent="Settings/FXAA"]
+margin_left = 430.0
+margin_right = 871.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+keep_pressed_outside = true
+group = SubResource( 23 )
+text = "Enabled"
+
+[node name="Disabled" type="Button" parent="Settings/FXAA"]
+margin_left = 901.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 23 )
+text = "Disabled"
+
+[node name="Shadow" type="HBoxContainer" parent="Settings"]
+margin_top = 246.0
+margin_right = 1342.0
+margin_bottom = 303.0
+custom_constants/separation = 30
+
+[node name="Label" type="Label" parent="Settings/Shadow"]
+margin_top = 2.0
+margin_right = 400.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 400, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Shadow Mapping:"
+
+[node name="Enabled" type="Button" parent="Settings/Shadow"]
+margin_left = 430.0
+margin_right = 871.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 22 )
+text = "Enabled"
+
+[node name="Disabled" type="Button" parent="Settings/Shadow"]
+margin_left = 901.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 22 )
+text = "Disabled"
+
+[node name="SSAO" type="HBoxContainer" parent="Settings"]
+margin_top = 328.0
+margin_right = 1342.0
+margin_bottom = 385.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Settings/SSAO"]
+margin_right = 400.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_vertical = 1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "SSAO:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="High" type="Button" parent="Settings/SSAO"]
+margin_left = 430.0
+margin_right = 714.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 12 )
+text = "High"
+
+[node name="Low" type="Button" parent="Settings/SSAO"]
+margin_left = 744.0
+margin_right = 1028.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 12 )
+text = "Low"
+
+[node name="Disabled" type="Button" parent="Settings/SSAO"]
+margin_left = 1058.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 12 )
+text = "Disabled"
+
+[node name="Bloom" type="HBoxContainer" parent="Settings"]
+margin_top = 410.0
+margin_right = 1342.0
+margin_bottom = 467.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Settings/Bloom"]
+margin_right = 400.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_vertical = 1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Bloom:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="High" type="Button" parent="Settings/Bloom"]
+margin_left = 430.0
+margin_right = 714.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 13 )
+text = "High"
+
+[node name="Low" type="Button" parent="Settings/Bloom"]
+margin_left = 744.0
+margin_right = 1028.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 13 )
+text = "Low"
+
+[node name="Disabled" type="Button" parent="Settings/Bloom"]
+margin_left = 1058.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 13 )
+text = "Disabled"
+
+[node name="Resolution" type="HBoxContainer" parent="Settings"]
+margin_top = 492.0
+margin_right = 1342.0
+margin_bottom = 549.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Settings/Resolution"]
+margin_top = 2.0
+margin_right = 400.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 400, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Resolution:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Native" type="Button" parent="Settings/Resolution"]
+margin_left = 430.0
+margin_right = 635.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 14 )
+text = "Native"
+
+[node name="1080" type="Button" parent="Settings/Resolution"]
+margin_left = 665.0
+margin_right = 871.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 14 )
+text = "1080"
+
+[node name="720" type="Button" parent="Settings/Resolution"]
+margin_left = 901.0
+margin_right = 1106.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 14 )
+text = "720"
+
+[node name="540" type="Button" parent="Settings/Resolution"]
+margin_left = 1136.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 14 )
+text = "540"
+
+[node name="Fullscreen" type="HBoxContainer" parent="Settings"]
+margin_top = 574.0
+margin_right = 1342.0
+margin_bottom = 631.0
+custom_constants/separation = 30
+
+[node name="Label" type="Label" parent="Settings/Fullscreen"]
+margin_top = 2.0
+margin_right = 400.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 400, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Fullscreen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Yes" type="Button" parent="Settings/Fullscreen"]
+margin_left = 430.0
+margin_right = 871.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = SubResource( 15 )
+text = "Yes"
+
+[node name="No" type="Button" parent="Settings/Fullscreen"]
+margin_left = 901.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = SubResource( 15 )
+text = "No"
+
+[node name="HSeparator" type="HSeparator" parent="Settings"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 656.0
+margin_right = 1342.0
+margin_bottom = 676.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Actions" type="HBoxContainer" parent="Settings"]
+margin_top = 701.0
+margin_right = 1342.0
+margin_bottom = 758.0
+custom_constants/separation = 50
+
+[node name="Apply" type="Button" parent="Settings/Actions"]
+margin_right = 646.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 17 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 9 )
+text = "Apply"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="Settings/Actions"]
+margin_left = 696.0
+margin_right = 1342.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 17 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 9 )
+text = "Cancel"
+
+[node name="Loading" type="HBoxContainer" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = -135.0
+margin_right = -130.0
+margin_bottom = -100.0
+custom_constants/separation = 100
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Loading"]
+margin_right = 168.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 11 )
+text = "Loading..."
+
+[node name="Progress" type="ProgressBar" parent="Loading"]
+margin_left = 268.0
+margin_right = 1690.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 18 )
+custom_styles/bg = SubResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoneTimer" type="Timer" parent="Loading"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 18.0898
+margin_top = 5.03506
+margin_right = 1042.09
+margin_bottom = 238.035
+texture = ExtResource( 14 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_right = 1080.0
+margin_bottom = 128.0
+texture = ExtResource( 1 )
+expand = true
