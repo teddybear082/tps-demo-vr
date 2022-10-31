@@ -34,6 +34,7 @@ onready var sound_effects = $SoundEffects
 onready var sound_effect_jump = sound_effects.get_node(@"Jump")
 onready var sound_effect_land = sound_effects.get_node(@"Land")
 onready var sound_effect_shoot = sound_effects.get_node(@"Shoot")
+onready var sound_effect_step = sound_effects.get_node(@"Step")
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -71,11 +72,12 @@ func _process(delta):
 		pass
 
 func _physics_process(delta):
-	pass
-	#if player_jumping == true:
-	#	if $FPController/PlayerBody.on_ground == true:
-	#		sound_effect_land.play()
-	#		player_jumping = false
+	
+	if player_jumping == true:
+		if $FPController/PlayerBody.on_ground == true:
+			if sound_effect_land.playing == false:
+				sound_effect_land.play()
+			player_jumping = false
 	# position our robot body based on our players head position
 #	var camera_transform : Transform = $ARVRCamera.transform
 #	var player_transform : Transform
@@ -198,3 +200,8 @@ func _on_player_jumped():
 	player_jumping = true
 	sound_effect_jump.play()
 	
+
+
+func _on_avatar_avatar_procedural_step_taken():
+	if sound_effect_step.playing == false:
+		sound_effect_step.play() 

@@ -6,6 +6,7 @@ extends Spatial
 #It needs an AnimationTree node with proper animation blends set as a child of avatar and pointing to the character AnimationPlayer
 #You also need to set the export variables to correspond with nodes in your XR Rig and choose whether you want to use LipSync.
 #Detailed information on use will be in the readme of the Godot-XR-Avatar readme.
+signal avatar_procedural_step_taken
 
 #set export variables to key elements of XR Rig necessary for avatar movement
 export (NodePath) var arvrorigin_path = null
@@ -539,6 +540,7 @@ func process_procedural_walk(delta: float, move: Vector2) -> void:
 				left_target.global_transform.origin = l_leg_pos
 				# after this left leg has animated, get the position of where the right leg is before starting right leg anim (otherwise leg is in outdated position to start)
 				last_r_leg_pos = r_leg_pos
+			
 			# half of animation time goes to right leg
 			if legs_anim_timer / step_anim_time >= 0.5:
 				var r_leg_interpolation_v = (legs_anim_timer / step_anim_time - 0.5) * 2.0
@@ -565,7 +567,7 @@ func process_procedural_walk(delta: float, move: Vector2) -> void:
 				# after this right leg has animated, get the position of where the left leg is before starting left leg anim (otherwise leg is in outdated position to start)
 				last_l_leg_pos = l_leg_pos
 		# half of animation time goes to left leg
-			if legs_anim_timer / step_anim_time <= 0.5:
+			if legs_anim_timer / step_anim_time >= 0.5:
 				var l_leg_interpolation_v = (legs_anim_timer / step_anim_time-0.5) * 2.0
 				# moving leg in the direction of the player move
 				l_leg_pos = last_l_leg_pos.linear_interpolate(desired_l_leg_pos, l_leg_interpolation_v)
@@ -576,6 +578,12 @@ func process_procedural_walk(delta: float, move: Vector2) -> void:
 			# increase timer time
 			legs_anim_timer += delta
 		
+		# Tell other nodes when procedural step taken, for instance for sound effects
+		if legs_anim_timer / step_anim_time >= .45 and legs_anim_timer / step_anim_time <= .55:
+			emit_signal("avatar_procedural_step_taken")
+			
+		if legs_anim_timer / step_anim_time > .95:
+			emit_signal("avatar_procedural_step_taken")
 		
 		# if timer time is greater than whole animation time then stop animating
 		if legs_anim_timer >= step_anim_time:
@@ -624,9 +632,9 @@ func _physics_process(delta: float) -> void:
 	#perform hand grip animations using AnimationTree by adding grip and trigger hand poses to IK animation
 	if left_controller_path != null and right_controller_path != null and get_node_or_null("AnimationTree") != null:
 		$AnimationTree.set("parameters/lefthandpose/blend_amount", left_controller.get_joystick_axis(JOY_VR_ANALOG_GRIP))
-		$AnimationTree.set("parameters/righthandpose/blend_amount", right_controller.get_joystick_axis(JOY_VR_ANALOG_GRIP))
+		#$AnimationTree.set("parameters/righthandpose/blend_amount", right_controller.get_joystick_axis(JOY_VR_ANALOG_GRIP))
 		$AnimationTree.set("parameters/lefthandposetrig/blend_amount", left_controller.get_joystick_axis(JOY_VR_ANALOG_TRIGGER))
-		$AnimationTree.set("parameters/righthandposetrig/blend_amount", right_controller.get_joystick_axis(JOY_VR_ANALOG_TRIGGER))
+		#$AnimationTree.set("parameters/righthandposetrig/blend_amount", right_controller.get_joystick_axis(JOY_VR_ANALOG_TRIGGER))
 	
 		
 	# Calculate foot movement based on players actual ground-movement velocity
