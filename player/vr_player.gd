@@ -4,26 +4,26 @@ extends Spatial
 signal player_menu_button_pressed
 export (XRTools.Buttons) var shoot_button : int = XRTools.Buttons.VR_TRIGGER
 export (XRTools.Buttons) var menu_button : int = XRTools.Buttons.VR_BUTTON_BY
-const DIRECTION_INTERPOLATE_SPEED = 1
-const MOTION_INTERPOLATE_SPEED = 10
-const ROTATION_INTERPOLATE_SPEED = 10
+#const DIRECTION_INTERPOLATE_SPEED = 1
+#const MOTION_INTERPOLATE_SPEED = 10
+#const ROTATION_INTERPOLATE_SPEED = 10
 
-const MIN_AIRBORNE_TIME = 0.1
-const JUMP_SPEED = 5
+#const MIN_AIRBORNE_TIME = 0.1
+#const JUMP_SPEED = 5
 
-var airborne_time = 100
+#var airborne_time = 100
 
-var orientation = Transform()
-var root_motion = Transform()
-var motion = Vector2()
-var velocity = Vector3()
+#var orientation = Transform()
+#var root_motion = Transform()
+#var motion = Vector2()
+#var velocity = Vector3()
 var player_jumping : bool = false
 
 
 onready var initial_position = transform.origin
 onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
-onready var animation_tree = $AnimationTree
+#onready var animation_tree = $AnimationTree
 onready var player_model = $FPController/avatar
 onready var shoot_from = player_model.get_node(@"Armature/Skeleton/GunBone/ShootFrom")
 onready var fire_cooldown = $FireCooldown
@@ -42,18 +42,21 @@ func _init():
 
 func _ready():
 	# Pre-initialize orientation transform.
-	orientation = player_model.global_transform
-	orientation.origin = Vector3()
+	#orientation = player_model.global_transform
+	#orientation.origin = Vector3()
+	
+	# Connect necessary signals
 	$FPController/PlayerBody.connect("player_jumped", self, "_on_player_jumped")
 	right_controller.connect("button_pressed", self, "_on_right_controller_button_pressed")
 	left_controller.connect("button_pressed", self, "_on_left_controller_button_pressed")
 	
+	# Shrink head bone to make robot avatar's head invisible to player
 	var head_bone_pose = player_model.get_node("Armature/Skeleton").get_bone_pose(7)
 	var new_head_basis = head_bone_pose.basis.scaled(Vector3(0,0,0))
 	player_model.get_node("Armature/Skeleton").set_bone_pose(7, Transform(new_head_basis, head_bone_pose.origin))
 	player_model.get_node("Armature/Skeleton").set_bone_rest(7, Transform(new_head_basis, head_bone_pose.origin))
 		
-	$FPController/PlayerBody.player_height_offset = 0.15
+	$FPController/PlayerBody.player_height_offset = 0.10
 	
 
 
@@ -72,7 +75,9 @@ func _process(delta):
 		pass
 
 func _physics_process(delta):
-	
+	if !player_jumping:
+		return
+		
 	if player_jumping == true:
 		if $FPController/PlayerBody.on_ground == true:
 			if sound_effect_land.playing == false:
@@ -167,29 +172,35 @@ func _physics_process(delta):
 #
 #	player_model.global_transform.basis = orientation.basis
 
+
+func shoot():
+	#var shoot_origin = shoot_from.global_transform.origin
+	#var shoot_dir = -right_controller.transform.basis.z
+	var bullet = preload("res://player/bullet/bullet.tscn").instance()
+	get_parent().add_child(bullet)
+	#bullet.global_transform.origin = shoot_origin
+	# If we don't rotate the bullets there is no useful way to control the particles ..
+	#bullet.look_at(shoot_origin + shoot_dir, Vector3.UP)
+	#shoot_particle.restart()
+	var shoot_transform = shoot_from.global_transform
+	bullet.global_transform.origin = shoot_transform.origin
+	# If we don't rotate the bullets there is no useful way to control the particles ..
+	bullet.look_at(shoot_transform.origin + shoot_transform.basis.y, Vector3.UP)
+	bullet.add_collision_exception_with(self)
+	var shoot_particle = shoot_from.get_node("ShootParticle")
+	shoot_particle.restart()
+	shoot_particle.emitting = true
+	var muzzle_particle = shoot_from.get_node("MuzzleFlash")
+	muzzle_particle.restart()
+	muzzle_particle.emitting = true
+	fire_cooldown.start()
+	sound_effect_shoot.play()
+	
 func _on_right_controller_button_pressed(button):
 	if button == shoot_button and fire_cooldown.time_left == 0:
-		#var shoot_origin = shoot_from.global_transform.origin
-		#var shoot_dir = -right_controller.transform.basis.z
-		var bullet = preload("res://player/bullet/bullet.tscn").instance()
-		get_parent().add_child(bullet)
-		#bullet.global_transform.origin = shoot_origin
-		# If we don't rotate the bullets there is no useful way to control the particles ..
-		#bullet.look_at(shoot_origin + shoot_dir, Vector3.UP)
-		#shoot_particle.restart()
-		var shoot_transform = $FPController/avatar/Armature/Skeleton/GunBone/ShootFrom.global_transform
-		bullet.global_transform.origin = shoot_transform.origin
-		# If we don't rotate the bullets there is no useful way to control the particles ..
-		bullet.look_at(shoot_transform.origin + shoot_transform.basis.y, Vector3.UP)
-		bullet.add_collision_exception_with(self)
-		var shoot_particle = $FPController/avatar/Armature/Skeleton/GunBone/ShootFrom/ShootParticle
-		shoot_particle.restart()
-		shoot_particle.emitting = true
-		var muzzle_particle = $FPController/avatar/Armature/Skeleton/GunBone/ShootFrom/MuzzleFlash
-		muzzle_particle.restart()
-		muzzle_particle.emitting = true
-		fire_cooldown.start()
-		sound_effect_shoot.play()
+		shoot()
+	
+		
 		
 
 func _on_left_controller_button_pressed(button):
@@ -203,5 +214,5 @@ func _on_player_jumped():
 
 
 func _on_avatar_avatar_procedural_step_taken():
-	if sound_effect_step.playing == false:
-		sound_effect_step.play() 
+	#if sound_effect_step.playing == false:
+	sound_effect_step.play() 

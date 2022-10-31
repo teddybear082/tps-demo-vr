@@ -225,6 +225,7 @@ func _ready():
 		SkeletonIKR.set_magnet_position(Vector3(3, -5, -10))
 	SkeletonIKR.min_distance = .001
 	
+	
 	#create SkeletonIK node called SkeletonIKLegL and set it to use the upper leg and foot with a magnet for IK
 	SkeletonIKLegL = SkeletonIK.new()
 	SkeletonIKLegL.name = "SkeletonIKLegL"
