@@ -50,6 +50,8 @@ export var ik_raycast_height := 2.0
 export var min_max_interpolation := Vector2(0.03, 0.9)
 export var smoothing := 0.8
 export var avatar_z_offset := .125
+export var avatar_x_offset := .150
+
 export(float, 0.0, 120.0, 5.0) var max_body_angle := 30.0
 export(float, 0.1, 5.0) var body_turn_duration := 1.0
 
@@ -167,7 +169,7 @@ func _ready():
 	
 	#set skeleton offset to desired value by player (usually skeletons have to be moved back some so player can see the body when looking down)
 	skeleton.translation.z = avatar_z_offset
-	
+	skeleton.translation.x = avatar_x_offset
 	#find the bones needed to set Skeleton IK nodes (head, head top, left upper arm and hand, right upper arm and hand, left upper leg and foot, right upper leg and foot)
 	set_key_skeleton_nodes_for_IK(skeleton)
 	
@@ -419,7 +421,7 @@ func _ready():
 	# Calculate the body direction (in origin-space) from the head forward direction
 	body_direction = Plane.PLANE_XZ.project(arvrcamera.transform.basis.z).normalized()
 
-	
+		
 #function use to place avatar feet on surfaces procedurally
 func update_ik_anim(target: Spatial, raycast: RayCast, bone_attach: BoneAttachment, d_b: Basis, avatar_height: float, hit_offset: float) -> void:
 	var bone_pos = bone_attach.global_transform.origin
@@ -721,7 +723,7 @@ func set_key_skeleton_nodes_for_IK(skeleton_node):
 		
 		elif bone_name.matchn("*bicep*" ) or bone_name.matchn("*arm*"):
 			if !(bone_name.matchn("*fore*")) and !(bone_name.matchn("*lower*")):
-				if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L"):
+				if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L") or bone_name.ends_with(".L") or bone_name.ends_with(".l"):
 					if l_upperarm_set == false:
 						left_upper_arm_bone = skeleton_node.find_bone(bone_name)
 						print(left_upper_arm_bone)
@@ -739,7 +741,7 @@ func set_key_skeleton_nodes_for_IK(skeleton_node):
 				
 		elif bone_name.matchn("*leg*") or bone_name.matchn("*thigh*"):
 			if bone_name.matchn("*upper*") or bone_name.matchn("*up*") or bone_name.matchn("*thigh*"):
-				if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L"):
+				if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L") or bone_name.ends_with(".L") or bone_name.ends_with(".l"):
 					if l_upperleg_set == false:
 						left_upper_leg_bone = skeleton_node.find_bone(bone_name)
 						print(left_upper_leg_bone)
@@ -757,7 +759,7 @@ func set_key_skeleton_nodes_for_IK(skeleton_node):
 		
 		#fall back to wrist bone as hand if no matching hand bones; don't set l_hand_set = true and r_hand_set = true here, though, so if hand bone is later in bone chain it will still overwrite the wrist-as-hand selection
 		elif bone_name.matchn("*wrist*") and check_if_finger_bone(bone_name) == false:
-			if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L"):
+			if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L") or bone_name.ends_with(".L") or bone_name.ends_with(".l"):
 				if l_hand_set == false:
 					left_hand_bone = skeleton_node.find_bone(bone_name)
 					print(left_hand_bone)
@@ -773,7 +775,7 @@ func set_key_skeleton_nodes_for_IK(skeleton_node):
 					
 		
 		elif bone_name.matchn("*hand*") and check_if_finger_bone(bone_name) == false:
-			if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L"):
+			if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L") or bone_name.ends_with(".L") or bone_name.ends_with(".l"):
 				if l_hand_set == false:
 					left_hand_bone = skeleton_node.find_bone(bone_name)
 					print(left_hand_bone)
@@ -790,7 +792,7 @@ func set_key_skeleton_nodes_for_IK(skeleton_node):
 		
 						
 		elif bone_name.matchn("*foot*") or bone_name.matchn("*ankle*"):
-			if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L"):
+			if bone_name.matchn("*left*") or bone_name.matchn("*l_*") or bone_name.ends_with("_l") or bone_name.ends_with("_L") or bone_name.ends_with(".L") or bone_name.ends_with(".l"):
 				if l_foot_set == false:
 					left_foot_bone = skeleton_node.find_bone(bone_name)
 					print(left_foot_bone)

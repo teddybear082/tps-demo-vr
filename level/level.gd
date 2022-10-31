@@ -65,8 +65,13 @@ func _ready():
 		var minsize = Vector2(window_size.x * 540 / window_size.y, 540.0)
 		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_VIEWPORT, SceneTree.STRETCH_ASPECT_EXPAND, minsize)
 
-
+	if get_node_or_null("Player"):
+		$Player.connect("player_menu_button_pressed", self, "_on_player_menu_button_pressed")
+		
 func _input(event):
 	if event.is_action_pressed("quit"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		emit_signal("quit")
+
+func _on_player_menu_button_pressed():
+	emit_signal("quit")

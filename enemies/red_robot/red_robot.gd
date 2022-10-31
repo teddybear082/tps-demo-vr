@@ -128,9 +128,9 @@ func shoot():
 		var blast = blast_scene.instance()
 		get_tree().get_root().add_child(blast)
 		blast.global_transform.origin = col.position
-		if col.collider == player and player is Player:
-			yield(get_tree().create_timer(0.1), "timeout")
-			player.add_camera_shake_trauma(13)
+		#if col.collider == player and player is Player:
+			#yield(get_tree().create_timer(0.1), "timeout")
+			#player.add_camera_shake_trauma(13)
 
 
 func _physics_process(delta):
@@ -242,10 +242,10 @@ func _clip_ray(length):
 
 
 func _on_area_body_entered(body):
-	if body is Player or body.name == "Target":
+	if body.get_parent().get_parent().get_parent() is VRPlayer or body.name == "Target":
 		player = body
 
 
 func _on_area_body_exited(body):
-	if body is Player:
+	if body.get_parent().get_parent().get_parent() is VRPlayer:
 		player = null

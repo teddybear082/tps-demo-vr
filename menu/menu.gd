@@ -7,7 +7,7 @@ signal replace_main_scene
 #warning-ignore:unused_signal
 signal quit # Useless, but needed as there is no clean way to check if a node exposes a signal
 
-onready var ui = $ui_viewport2dto3d.get_scene_instance()
+onready var ui = $Screenholder/ui_viewport2dto3d.get_scene_instance()
 onready var main = ui.get_node(@"Main")
 onready var play_button = main.get_node(@"Play")
 onready var settings_button = main.get_node(@"Settings")
@@ -62,19 +62,24 @@ onready var loading_progress = loading.get_node(@"Progress")
 onready var loading_done_timer = loading.get_node(@"DoneTimer")
 
 func _ready():
+	$Screenholder.visible = false
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_EXPAND, Vector2(1920, 1080))
 	play_button.grab_focus()
 	var sound_effects = $BackgroundCache/RedRobot/SoundEffects
 	for child in sound_effects.get_children():
 		child.unit_db = -200
 	
-	# Connect menu button signals
+	# Connect menu button signals from viewport2dto3d
 	play_button.connect("pressed", self, "_on_play_pressed")
 	settings_button.connect("pressed", self, "_on_settings_pressed")
 	quit_button.connect("pressed", self, "_on_quit_pressed")
 	settings_action_apply.connect("pressed", self, "_on_apply_pressed")
 	settings_action_cancel.connect("pressed", self, "_on_cancel_pressed")
-	
+	loading_done_timer.connect("timeout", self, "_on_loading_done_timer_timeout")
+
+	yield(get_tree().create_timer(1.0), "timeout")
+	$Screenholder.visible = true
+
 func interactive_load(loader):
 	while true:
 		var status = loader.poll()

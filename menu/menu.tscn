@@ -14,7 +14,7 @@
 [ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/godot-xr-tools/functions/movement_turn.tscn" type="PackedScene" id=13]
 [ext_resource path="res://addons/godot-xr-tools/assets/right_physics_hand.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/godot-xr-tools/assets/player_body.gd" type="Script" id=15]
+[ext_resource path="res://addons/godot-xr-tools/objects/screen_holder.gd" type="Script" id=15]
 [ext_resource path="res://addons/godot-xr-tools/assets/player_body.tscn" type="PackedScene" id=16]
 [ext_resource path="res://enemies/red_robot/red_robot.tscn" type="PackedScene" id=19]
 [ext_resource path="res://player/bullet/bullet.tscn" type="PackedScene" id=20]
@@ -65,7 +65,7 @@ nodes/CombatRest/position = Vector2( -120, 100 )
 nodes/Eyes/node = SubResource( 7 )
 nodes/Eyes/position = Vector2( -40, 220 )
 nodes/output/position = Vector2( 420, 120 )
-node_connections = [ "Blend", 0, "CombatRest", "Blend", 1, "Eyes", "output", 0, "Blend" ]
+node_connections = [ "output", 0, "Blend", "Blend", 0, "CombatRest", "Blend", 1, "Eyes" ]
 
 [sub_resource type="BoxShape" id=20]
 extents = Vector3( 2, 1, 2 )
@@ -79,11 +79,6 @@ script = ExtResource( 1 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
-[node name="PlayerModel" parent="." instance=ExtResource( 3 )]
-
-[node name="Robot_Skeleton" parent="PlayerModel" index="0"]
-transform = Transform( 0.803991, 0, 0, 0, 0.803991, 0, 0, 0, 0.803991, 0, 0, 0 )
-
 [node name="SoundEffects" type="Node" parent="."]
 __meta__ = {
 "_editor_description_": "There must be an AudioStreamPlayer node at the path \"SoundEffects/Step\" next to the player model, anywhere that the player model is instanced. This is to prevent the animation from deleting the step from the track."
@@ -93,9 +88,6 @@ __meta__ = {
 __meta__ = {
 "_editor_description_": "There must be an AudioStreamPlayer node at the path \"SoundEffects/Step\" next to the player model, anywhere that the player model is instanced. This is to prevent the animation from deleting the step from the track."
 }
-
-[node name="ui_viewport2dto3d" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.249066, 1.06285, 0.761951 )
 
 [node name="FPController" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.22144 )
@@ -246,8 +238,7 @@ transform = Transform( 0.740024, -0.658406, -0.137349, -0.308624, -0.150972, -0.
 [node name="BonePinkyDistal" parent="FPController/RightHandController/RightPhysicsHand/RightHand/Armature_Left/Skeleton" index="20"]
 transform = Transform( 0.463311, -0.822464, -0.329992, -0.51281, 0.0548708, -0.856747, 0.722751, 0.566164, -0.396346, -0.0115324, -0.0446074, 0.108884 )
 
-[node name="PlayerBody" type="Node" parent="FPController" instance=ExtResource( 16 )]
-script = ExtResource( 15 )
+[node name="PlayerBody" parent="FPController" instance=ExtResource( 16 )]
 
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
@@ -271,7 +262,7 @@ autoplay = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 8 )
-anim_player = NodePath("../PlayerModel/AnimationPlayer")
+anim_player = NodePath("../Screenholder/PlayerModel/AnimationPlayer")
 active = true
 parameters/Blend/blend_amount = 1.0
 
@@ -307,10 +298,25 @@ transform = Transform( -1, 8.4334e-08, 3.14739e-07, 0, 0.965926, -0.258819, -3.2
 [node name="ExplosionAudio" parent="BackgroundCache/Bullet" index="4"]
 unit_db = -80.0
 
-[editable path="PlayerModel"]
+[node name="Screenholder" type="Spatial" parent="."]
+script = ExtResource( 15 )
+vrCamera_path = NodePath("../FPController/ARVRCamera")
+use_definite_follow_time = true
+definite_follow_time_secs = 2.0
+
+[node name="ui_viewport2dto3d" parent="Screenholder" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, 0 )
+
+[node name="PlayerModel" parent="Screenholder" instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.5, 1 )
+
+[node name="Robot_Skeleton" parent="Screenholder/PlayerModel" index="0"]
+transform = Transform( 0.803991, 0, 0, 0, 0.803991, 0, 0, 0, 0.803991, 0, 0, 0 )
+
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftPhysicsHand"]
 [editable path="FPController/LeftHandController/LeftPhysicsHand/LeftHand"]
 [editable path="FPController/RightHandController/RightPhysicsHand"]
 [editable path="FPController/RightHandController/RightPhysicsHand/RightHand"]
 [editable path="BackgroundCache/Bullet"]
+[editable path="Screenholder/PlayerModel"]

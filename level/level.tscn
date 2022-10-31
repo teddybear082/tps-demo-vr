@@ -2,8 +2,8 @@
 
 [ext_resource path="res://level/level.gd" type="Script" id=1]
 [ext_resource path="res://level/geometry/scenes/props.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/vr_player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/geometry/giprobe_data.res" type="GIProbeData" id=5]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://enemies/red_robot/red_robot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://level/level_music.ogg" type="AudioStream" id=8]
 [ext_resource path="res://level/debug.gd" type="Script" id=9]
@@ -148,9 +148,6 @@ extents = Vector3( 38.9134, 50, 37.1232 )
 interior_enable = true
 interior_ambient_color = Color( 0.2, 0.129412, 0.0470588, 1 )
 interior_ambient_contrib = 0.3
-
-[node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( -0.575826, 0, -0.817573, 0, 1, 0, 0.817573, 0, -0.575826, 64.8183, -1.0765, 78.7639 )
 
 [node name="RedRobot1" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.843905, 0, -0.536493, 0, 1, 0, 0.536493, 0, 0.843905, 71.5907, -6.05686, 46.2736 )
@@ -358,3 +355,6 @@ shape = SubResource( 22 )
 [node name="ReactorWall8" type="Occluder" parent="Occluders"]
 transform = Transform( -0.267642, 0, 0.963518, 0, 1, 0, -0.963518, 0, -0.267642, 35.8579, 4.54071, -16.814 )
 shape = SubResource( 22 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.8183, -1.0765, 78.7639 )
