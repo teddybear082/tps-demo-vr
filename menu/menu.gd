@@ -77,6 +77,44 @@ func _ready():
 	settings_action_cancel.connect("pressed", self, "_on_cancel_pressed")
 	loading_done_timer.connect("timeout", self, "_on_loading_done_timer_timeout")
 
+	#enable audio for button presses
+	
+	for child in settings_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+	
+	for child in gi_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in aa_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in shadow_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in fxaa_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in ssao_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in bloom_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in resolution_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+			
+	for child in fullscreen_menu.get_children():
+		if child is Button:
+			child.connect("pressed", self, "_on_ui_button_pressed")
+	
 	yield(get_tree().create_timer(1.0), "timeout")
 	$Screenholder.visible = true
 
@@ -110,6 +148,7 @@ func _on_loading_done_timer_timeout():
 
 
 func _on_play_pressed():
+	$SoundEffects/MenuSelect.play()
 	main.hide()
 	loading.show()
 	var path = "res://level/level.tscn"
@@ -123,6 +162,7 @@ func _on_play_pressed():
 
 
 func _on_settings_pressed():
+	$SoundEffects/MenuSelect.play()
 	main.hide()
 	settings_menu.show()
 	settings_action_cancel.grab_focus()
@@ -183,10 +223,12 @@ func _on_settings_pressed():
 
 
 func _on_quit_pressed():
+	$SoundEffects/MenuSelect.play()
 	get_tree().quit()
 
 
 func _on_apply_pressed():
+	$SoundEffects/MenuSelect.play()
 	main.show()
 	play_button.grab_focus()
 	settings_menu.hide()
@@ -245,3 +287,7 @@ func _on_cancel_pressed():
 	main.show()
 	play_button.grab_focus()
 	settings_menu.hide()
+
+
+func _on_ui_button_pressed():
+	$SoundEffects/MenuSelect.play()

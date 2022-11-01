@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MachinePowerOff.ogg-9a4a5a25b1349d7780c09748eeaf5d26.oggstr"
+
+[deps]
+
+source_file="res://player/audio/opengameart/cough-e/MachinePowerOff.ogg"
+dest_files=[ "res://.import/MachinePowerOff.ogg-9a4a5a25b1349d7780c09748eeaf5d26.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://menu/menu.gd" type="Script" id=1]
 [ext_resource path="res://menu/experiment.hdr" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://menu/floor.png" type="Texture" id=4]
 [ext_resource path="res://menu/menu_intro_music.ogg" type="AudioStream" id=5]
 [ext_resource path="res://menu/ui_viewport2dto3d.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/audio/opengameart/littlerobotsoundfactory/Electric Sound Library/Mp3/UI_Synth/UI_Synth_02.mp3" type="AudioStream" id=7]
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-xr-tools/functions/function_pointer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=12]
@@ -87,6 +88,9 @@ __meta__ = {
 __meta__ = {
 "_editor_description_": "There must be an AudioStreamPlayer node at the path \"SoundEffects/Step\" next to the player model, anywhere that the player model is instanced. This is to prevent the animation from deleting the step from the track."
 }
+
+[node name="MenuSelect" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource( 7 )
 
 [node name="FPController" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.22144 )

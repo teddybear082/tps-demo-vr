@@ -36,6 +36,8 @@ onready var sound_effect_jump = sound_effects.get_node(@"Jump")
 onready var sound_effect_land = sound_effects.get_node(@"Land")
 onready var sound_effect_shoot = sound_effects.get_node(@"Shoot")
 onready var sound_effect_step = sound_effects.get_node(@"Step")
+onready var sound_effect_activate = sound_effects.get_node(@"Activate")
+
 
 func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -211,6 +213,7 @@ func _on_right_controller_button_pressed(button):
 		shoot()
 	
 	if button == arm_rotate_button:
+		sound_effect_activate.play()
 		rotate_right_arm()
 		
 		

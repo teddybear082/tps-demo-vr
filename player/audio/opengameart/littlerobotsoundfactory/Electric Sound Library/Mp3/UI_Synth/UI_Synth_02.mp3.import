@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/UI_Synth_02.mp3-88501fedc885d704177d86309e9ce92e.mp3str"
+
+[deps]
+
+source_file="res://player/audio/opengameart/littlerobotsoundfactory/Electric Sound Library/Mp3/UI_Synth/UI_Synth_02.mp3"
+dest_files=[ "res://.import/UI_Synth_02.mp3-88501fedc885d704177d86309e9ce92e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

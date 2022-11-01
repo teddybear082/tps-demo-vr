@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SpaceEngine_Start_01.mp3-b8f0fff7436533a60ca54aab3aa97671.mp3str"
+
+[deps]
+
+source_file="res://player/audio/opengameart/littlerobotsoundfactory/Electric Sound Library/Mp3/SpaceEngine/SpaceEngine_Start_01.mp3"
+dest_files=[ "res://.import/SpaceEngine_Start_01.mp3-b8f0fff7436533a60ca54aab3aa97671.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
