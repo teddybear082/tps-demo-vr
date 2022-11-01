@@ -4,6 +4,7 @@ extends Spatial
 signal player_menu_button_pressed
 export (XRTools.Buttons) var shoot_button : int = XRTools.Buttons.VR_TRIGGER
 export (XRTools.Buttons) var menu_button : int = XRTools.Buttons.VR_BUTTON_BY
+export (XRTools.Buttons) var arm_rotate_button : int = XRTools.Buttons.VR_BUTTON_BY
 #const DIRECTION_INTERPOLATE_SPEED = 1
 #const MOTION_INTERPOLATE_SPEED = 10
 #const ROTATION_INTERPOLATE_SPEED = 10
@@ -18,7 +19,7 @@ export (XRTools.Buttons) var menu_button : int = XRTools.Buttons.VR_BUTTON_BY
 #var motion = Vector2()
 #var velocity = Vector3()
 var player_jumping : bool = false
-
+var arm_in_fire_position : bool = false
 
 onready var initial_position = transform.origin
 onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
@@ -195,23 +196,33 @@ func shoot():
 	muzzle_particle.emitting = true
 	fire_cooldown.start()
 	sound_effect_shoot.play()
-	
+
+func rotate_right_arm():
+	if !arm_in_fire_position:
+		$FPController/avatar.right_hand_target.rotation_degrees = Vector3(0, -90, 90)
+		arm_in_fire_position = true
+	else:
+		$FPController/avatar.right_hand_target.rotation_degrees = $FPController/avatar.right_hand_rotation_degs
+		arm_in_fire_position = false
+		
+		
 func _on_right_controller_button_pressed(button):
-	if button == shoot_button and fire_cooldown.time_left == 0:
+	if button == shoot_button and fire_cooldown.time_left == 0 and arm_in_fire_position == true:
 		shoot()
 	
+	if button == arm_rotate_button:
+		rotate_right_arm()
 		
 		
-
 func _on_left_controller_button_pressed(button):
 	if button == menu_button:
 		emit_signal("player_menu_button_pressed")			
+
 
 func _on_player_jumped():
 	player_jumping = true
 	sound_effect_jump.play()
 	
-
 
 func _on_avatar_avatar_procedural_step_taken():
 	#if sound_effect_step.playing == false:

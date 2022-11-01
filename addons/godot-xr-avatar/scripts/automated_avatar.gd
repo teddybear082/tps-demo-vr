@@ -633,9 +633,9 @@ func _physics_process(delta: float) -> void:
 	#perform hand grip animations using AnimationTree by adding grip and trigger hand poses to IK animation
 	if left_controller_path != null and right_controller_path != null and get_node_or_null("AnimationTree") != null:
 		$AnimationTree.set("parameters/lefthandpose/blend_amount", left_controller.get_joystick_axis(JOY_VR_ANALOG_GRIP))
-		#$AnimationTree.set("parameters/righthandpose/blend_amount", right_controller.get_joystick_axis(JOY_VR_ANALOG_GRIP))
+		$AnimationTree.set("parameters/righthandpose/blend_amount", 1-right_controller.get_joystick_axis(JOY_VR_ANALOG_GRIP))
 		$AnimationTree.set("parameters/lefthandposetrig/blend_amount", left_controller.get_joystick_axis(JOY_VR_ANALOG_TRIGGER))
-		#$AnimationTree.set("parameters/righthandposetrig/blend_amount", right_controller.get_joystick_axis(JOY_VR_ANALOG_TRIGGER))
+		$AnimationTree.set("parameters/righthandposetrig/blend_amount", 1-right_controller.get_joystick_axis(JOY_VR_ANALOG_TRIGGER))
 	
 		
 	# Calculate foot movement based on players actual ground-movement velocity
