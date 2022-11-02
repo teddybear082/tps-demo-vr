@@ -46,7 +46,6 @@ margin_right = 711.0
 margin_bottom = 499.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
-action_mode = 0
 text = "Controls"
 
 [node name="ExitButton" type="Button" parent="Main"]
@@ -57,7 +56,6 @@ margin_right = 747.0
 margin_bottom = 772.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
-action_mode = 0
 text = "Exit Game"
 
 [node name="Controls" type="Control" parent="."]
@@ -69,7 +67,6 @@ margin_bottom = 1080.0
 margin_top = 208.44
 margin_right = 695.0
 margin_bottom = 375.44
-custom_colors/font_color = Color( 0.52549, 0.780392, 1, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Smooth Turn"
 
@@ -79,30 +76,26 @@ margin_top = 208.44
 margin_right = 775.0
 margin_bottom = 248.44
 rect_scale = Vector2( 5, 5 )
-action_mode = 0
 
 [node name="SeatedModeLabel" type="Label" parent="Controls"]
 margin_top = 379.44
 margin_right = 695.0
 margin_bottom = 393.44
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Seated Mode"
 
-[node name="SeatedModeCheckButton" type="CheckButton" parent="Controls"]
+[node name="SeatedModeCheckButton" type="CheckBox" parent="Controls"]
 margin_left = 699.0
 margin_top = 369.0
 margin_right = 775.0
 margin_bottom = 409.0
 rect_scale = Vector2( 5, 5 )
-action_mode = 0
 
 [node name="TeleportLabel" type="Label" parent="Controls"]
 margin_left = 4.0
 margin_top = 551.0
 margin_right = 461.0
 margin_bottom = 718.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Teleport"
 
@@ -111,26 +104,23 @@ margin_left = 17.0
 margin_top = 729.0
 margin_right = 647.0
 margin_bottom = 896.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Robot Body"
 
-[node name="TeleportCheckButton" type="CheckButton" parent="Controls"]
+[node name="TeleportCheckButton" type="CheckBox" parent="Controls"]
 margin_left = 699.0
 margin_top = 539.0
 margin_right = 775.0
 margin_bottom = 579.0
 rect_scale = Vector2( 5, 5 )
-action_mode = 0
 
-[node name="RobotBodyCheckButton" type="CheckButton" parent="Controls"]
+[node name="RobotBodyCheckButton" type="CheckBox" parent="Controls"]
 margin_left = 699.0
 margin_top = 712.0
 margin_right = 775.0
 margin_bottom = 752.0
 rect_scale = Vector2( 5, 5 )
 pressed = true
-action_mode = 0
 
 [node name="BackButton" type="Button" parent="Controls"]
 light_mask = 0
@@ -141,8 +131,12 @@ margin_right = 1435.0
 margin_bottom = 1084.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
-action_mode = 0
 text = "BACK"
+
+[node name="MenuCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [connection signal="pressed" from="Main/ControlsButton" to="." method="_on_Controls_pressed"]
 [connection signal="pressed" from="Main/ExitButton" to="." method="_on_Exit_pressed"]
