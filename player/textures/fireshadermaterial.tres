@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://addons/fire/fire3d.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+as_normalmap = true
+bump_strength = 22.6
+noise = SubResource( 1 )
+noise_offset = Vector2( 1, 2 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/root_color = Color( 0.741176, 0.878431, 0.980392, 1 )
+shader_param/tip_color = Color( 0.027451, 0.105882, 0.388235, 1 )
+shader_param/fire_alpha = 0.9
+shader_param/fire_speed = Vector2( 0, 1 )
+shader_param/fire_aperture = 0.22
+shader_param/noise_tex = SubResource( 2 )

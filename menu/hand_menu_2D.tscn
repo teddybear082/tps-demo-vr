@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://menu/hand_menu_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://menu/tps_demo_vr.png" type="Texture" id=2]
+[ext_resource path="res://menu/VR.png" type="Texture" id=3]
+[ext_resource path="res://menu/hand_menu_2D.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=4]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[node name="hand_menu_2D" type="Control"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1055.0
+margin_bottom = 128.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="Main" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ControlsButton" type="Button" parent="Main"]
+material = SubResource( 1 )
+margin_left = 225.0
+margin_top = 296.0
+margin_right = 711.0
+margin_bottom = 499.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+action_mode = 0
+text = "Controls"
+
+[node name="ExitButton" type="Button" parent="Main"]
+material = SubResource( 2 )
+margin_left = 183.0
+margin_top = 599.0
+margin_right = 747.0
+margin_bottom = 772.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+action_mode = 0
+text = "Exit Game"
+
+[node name="Controls" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="SmoothTurnLabel" type="Label" parent="Controls"]
+margin_top = 208.44
+margin_right = 695.0
+margin_bottom = 375.44
+custom_colors/font_color = Color( 0.52549, 0.780392, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Smooth Turn"
+
+[node name="SmoothTurnCheckButton" type="CheckBox" parent="Controls"]
+margin_left = 699.0
+margin_top = 208.44
+margin_right = 775.0
+margin_bottom = 248.44
+rect_scale = Vector2( 5, 5 )
+action_mode = 0
+
+[node name="SeatedModeLabel" type="Label" parent="Controls"]
+margin_top = 379.44
+margin_right = 695.0
+margin_bottom = 393.44
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Seated Mode"
+
+[node name="SeatedModeCheckButton" type="CheckButton" parent="Controls"]
+margin_left = 699.0
+margin_top = 369.0
+margin_right = 775.0
+margin_bottom = 409.0
+rect_scale = Vector2( 5, 5 )
+action_mode = 0
+
+[node name="TeleportLabel" type="Label" parent="Controls"]
+margin_left = 4.0
+margin_top = 551.0
+margin_right = 461.0
+margin_bottom = 718.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Teleport"
+
+[node name="RobotBodyLabel" type="Label" parent="Controls"]
+margin_left = 17.0
+margin_top = 729.0
+margin_right = 647.0
+margin_bottom = 896.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Robot Body"
+
+[node name="TeleportCheckButton" type="CheckButton" parent="Controls"]
+margin_left = 699.0
+margin_top = 539.0
+margin_right = 775.0
+margin_bottom = 579.0
+rect_scale = Vector2( 5, 5 )
+action_mode = 0
+
+[node name="RobotBodyCheckButton" type="CheckButton" parent="Controls"]
+margin_left = 699.0
+margin_top = 712.0
+margin_right = 775.0
+margin_bottom = 752.0
+rect_scale = Vector2( 5, 5 )
+pressed = true
+action_mode = 0
+
+[node name="BackButton" type="Button" parent="Controls"]
+light_mask = 0
+material = SubResource( 3 )
+margin_left = 1123.0
+margin_top = 911.0
+margin_right = 1435.0
+margin_bottom = 1084.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+action_mode = 0
+text = "BACK"
+
+[connection signal="pressed" from="Main/ControlsButton" to="." method="_on_Controls_pressed"]
+[connection signal="pressed" from="Main/ExitButton" to="." method="_on_Exit_pressed"]
+[connection signal="toggled" from="Controls/SmoothTurnCheckButton" to="." method="_on_SmoothTurnCheckButton_toggled"]
+[connection signal="toggled" from="Controls/SeatedModeCheckButton" to="." method="_on_SeatedModeCheckButton_toggled"]
+[connection signal="toggled" from="Controls/TeleportCheckButton" to="." method="_on_TeleportCheckButton_toggled"]
+[connection signal="toggled" from="Controls/RobotBodyCheckButton" to="." method="_on_RobotBodyCheckButton_toggled"]
+[connection signal="pressed" from="Controls/BackButton" to="." method="_on_BackButton_pressed"]

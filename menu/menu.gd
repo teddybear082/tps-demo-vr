@@ -2,6 +2,7 @@ extends Node
 
 var res_loader: ResourceInteractiveLoader = null
 var loading_thread: Thread = null
+var which_pointer : String = "right"
 
 signal replace_main_scene
 #warning-ignore:unused_signal
@@ -77,7 +78,11 @@ func _ready():
 	settings_action_cancel.connect("pressed", self, "_on_cancel_pressed")
 	loading_done_timer.connect("timeout", self, "_on_loading_done_timer_timeout")
 
-	#enable audio for button presses
+	# Connect button pressed signals on controllers
+	$FPController/LeftHandController.connect("button_pressed", self, "_on_LeftHand_button_pressed")
+	$FPController/RightHandController.connect("button_pressed", self, "_on_RightHand_button_pressed")
+	
+	# Enable menu audio for button presses
 	
 	for child in settings_menu.get_children():
 		if child is Button:
@@ -118,6 +123,8 @@ func _ready():
 	yield(get_tree().create_timer(1.0), "timeout")
 	$Screenholder.visible = true
 
+	_update_pointers()
+	
 func interactive_load(loader):
 	while true:
 		var status = loader.poll()
@@ -291,3 +298,20 @@ func _on_cancel_pressed():
 
 func _on_ui_button_pressed():
 	$SoundEffects/MenuSelect.play()
+
+
+func _update_pointers():
+	$FPController/LeftHandController/FunctionPointer.enabled = which_pointer == "left"
+	$FPController/RightHandController/FunctionPointer.enabled = which_pointer == "right"
+	
+	
+func _on_LeftHand_button_pressed(button):
+	if which_pointer == "right" and button == $FPController/LeftHandController/FunctionPointer.active_button:
+		which_pointer = "left"
+		_update_pointers()
+
+
+func _on_RightHand_button_pressed(button):
+	if which_pointer == "left" and button == $FPController/RightHandController/FunctionPointer.active_button:
+		which_pointer = "right"
+		_update_pointers()

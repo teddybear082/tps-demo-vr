@@ -19,7 +19,8 @@ func set_enabled(new_enabled : bool) -> void:
 
 func _update_enabled():
 	$PokeBody/CollisionShape.disabled = !enabled
-
+	$PokeBody/MeshInstance.visible = enabled
+	
 func set_radius(new_radius : float) -> void:
 	radius = new_radius
 	if is_ready:
