@@ -8,7 +8,7 @@ This is PCVR ONLY.  It's pretty heavy on performance even if you turn the graphi
 
 You can see a video of it here: https://www.reddit.com/r/godot/comments/yl4k02/i_am_robiman/
 
-##VR Controls:
+## VR Controls:
 
 Left or Right Trigger (in menu scene) - Switch pointer hand and select menu items
 
