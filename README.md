@@ -22,7 +22,7 @@ Right Hand Thumbstick - Turn (option to change to smooth turn in hand menu)
 
 Right Hand A button - Jump
 
-Right Hand Y button - Change between hand and cannon mode on Right Hand
+Right Hand B button - Change between hand and cannon mode on Right Hand
 
 Right Hand Thumbstick - Toggle Crouching mode
 
