@@ -24,7 +24,7 @@ Right Hand A button - Jump
 
 Right Hand B button - Change between hand and cannon mode on Right Hand
 
-Right Hand Thumbstick - Toggle Crouching mode
+Right Hand Thumbstick (Press in) - Toggle Crouching mode
 
 ## XR Assets
 
