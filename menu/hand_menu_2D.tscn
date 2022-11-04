@@ -1,27 +1,22 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://menu/hand_menu_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://menu/tps_demo_vr.png" type="Texture" id=2]
 [ext_resource path="res://menu/VR.png" type="Texture" id=3]
 [ext_resource path="res://menu/hand_menu_2D.gd" type="Script" id=4]
+[ext_resource path="res://menu/button_pressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://menu/button_normal.tres" type="StyleBox" id=6]
+[ext_resource path="res://menu/button_hover.tres" type="StyleBox" id=7]
+[ext_resource path="res://menu/button_focus.tres" type="StyleBox" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=4]
 light_mode = 1
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0, 0, 0, 1 )
-
 [sub_resource type="CanvasItemMaterial" id=2]
 light_mode = 1
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0, 0, 0, 1 )
-
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0, 0, 0, 1 )
 
 [node name="hand_menu_2D" type="Control"]
 material = SubResource( 4 )
@@ -41,7 +36,6 @@ margin_bottom = 40.0
 texture = ExtResource( 2 )
 
 [node name="Main" type="Control" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -50,9 +44,11 @@ margin_left = 225.0
 margin_top = 296.0
 margin_right = 711.0
 margin_bottom = 499.0
-custom_colors/font_color_pressed = Color( 0.780392, 0.152941, 0.152941, 1 )
 custom_fonts/font = ExtResource( 1 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/normal = ExtResource( 6 )
 text = "Controls"
 
 [node name="ExitButton" type="Button" parent="Main"]
@@ -61,12 +57,15 @@ margin_left = 183.0
 margin_top = 599.0
 margin_right = 747.0
 margin_bottom = 772.0
-custom_colors/font_color_pressed = Color( 0.780392, 0.152941, 0.152941, 1 )
 custom_fonts/font = ExtResource( 1 )
-custom_styles/normal = SubResource( 6 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/normal = ExtResource( 6 )
 text = "Exit Game"
 
 [node name="Controls" type="Control" parent="."]
+visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
@@ -132,13 +131,15 @@ pressed = true
 [node name="BackButton" type="Button" parent="Controls"]
 light_mask = 0
 material = SubResource( 3 )
-margin_left = 1123.0
-margin_top = 911.0
-margin_right = 1435.0
-margin_bottom = 1084.0
-custom_colors/font_color_pressed = Color( 0.780392, 0.152941, 0.152941, 1 )
+margin_left = 1119.0
+margin_top = 462.0
+margin_right = 1431.0
+margin_bottom = 635.0
 custom_fonts/font = ExtResource( 1 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/normal = ExtResource( 6 )
 text = "BACK"
 
 [node name="MenuCooldown" type="Timer" parent="."]
