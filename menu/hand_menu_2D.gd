@@ -1,9 +1,6 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 signal smooth_turn_button_pressed(state)
 signal robot_body_button_pressed(state)
 signal teleport_button_pressed(state)
@@ -56,5 +53,6 @@ func _on_SmoothTurnCheckButton_toggled(button_pressed):
 	$MenuCooldown.start()
 
 func _on_BackButton_pressed():
+	emit_signal("hand_menu_button_pressed")
 	$Controls.visible = false
 	$Main.visible = true

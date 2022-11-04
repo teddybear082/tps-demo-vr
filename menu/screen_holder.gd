@@ -1,3 +1,5 @@
+# This script rotates a screen in front of the player dynamically.  The screen, a child of this holder, has to be rotated 180 degrees in the scene tree.
+
 extends Spatial
 export (NodePath) var vrCamera_path
 export var time_to_move : float = 0.5

@@ -128,10 +128,7 @@ func shoot():
 		var blast = blast_scene.instance()
 		get_tree().get_root().add_child(blast)
 		blast.global_transform.origin = col.position
-		#if col.collider == player and player is Player:
-			#yield(get_tree().create_timer(0.1), "timeout")
-			#player.add_camera_shake_trauma(13)
-
+		
 
 func _physics_process(delta):
 	if test_shoot:
@@ -242,10 +239,12 @@ func _clip_ray(length):
 
 
 func _on_area_body_entered(body):
+	# The "body" here the enemy detects is the kinematic body node that is a child of the XR Tools "PlayerBody".
+	# So the get_parent().get_parent().get_parent() walks up the player tree --> PlayerBody node --> FPController -> "Player" parent spatial, which is in a class called VRPlayer	
 	if body.get_parent().get_parent().get_parent() is VRPlayer or body.name == "Target":
 		player = body
 
-
+	# Same comment as above regarding the VR player body
 func _on_area_body_exited(body):
 	if body.get_parent().get_parent().get_parent() is VRPlayer:
 		player = null

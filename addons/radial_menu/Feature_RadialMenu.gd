@@ -1,5 +1,5 @@
 extends Spatial
-#This code was developed by lejar, https://github.com/lejar and adapted for this project
+#This code was developed by lejar, https://github.com/lejar and adapted for this project, to add a radial hand menu to select options
 
 
 signal entry_selected(entry)
@@ -46,8 +46,7 @@ func _ready():
 
 func add_entry(entry: String) -> void:
 	if not entry in icons:
-		#icons[entry] = load('res://assets/feathericons/' + entry + '.png')
-		#icons[entry] = load("res://icon.png")
+		# Insert icons you want to use for the radial menu in the "radial menu textures" folder with their name the same as the entry name 
 		icons[entry] = load("res://addons/radial_menu/radial_menu_textures/" + entry + ".png")
 		
 	var mesh = $IconTemplate.duplicate()

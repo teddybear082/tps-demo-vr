@@ -82,7 +82,7 @@ func _ready():
 	$FPController/LeftHandController.connect("button_pressed", self, "_on_LeftHand_button_pressed")
 	$FPController/RightHandController.connect("button_pressed", self, "_on_RightHand_button_pressed")
 	
-	# Enable menu audio for button presses
+	# Enable menu audio for button presses by connecting their pressed signals to receiver that will play the audio
 	
 	for child in settings_menu.get_children():
 		if child is Button:
@@ -291,15 +291,16 @@ func _on_apply_pressed():
 
 
 func _on_cancel_pressed():
+	$SoundEffects/MenuSelect.play()
 	main.show()
 	play_button.grab_focus()
 	settings_menu.hide()
 
-
+# Receiver function of button pressed signal to play the menu audio sound
 func _on_ui_button_pressed():
 	$SoundEffects/MenuSelect.play()
 
-
+# Functions to switch which VR pointer is active depending on which trigger the player last pressed
 func _update_pointers():
 	$FPController/LeftHandController/FunctionPointer.enabled = which_pointer == "left"
 	$FPController/RightHandController/FunctionPointer.enabled = which_pointer == "right"
