@@ -7,14 +7,16 @@
 resource_local_to_scene = true
 size = Vector2( 4, 2 )
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=5]
 flags = 4
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
 flags_unshaded = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
 params_cull_mode = 2
-albedo_texture = SubResource( 2 )
+albedo_texture = SubResource( 5 )
 
 [sub_resource type="BoxShape" id=4]
 resource_local_to_scene = true
@@ -32,7 +34,7 @@ render_target_update_mode = 1
 
 [node name="Screen" parent="." index="1"]
 mesh = SubResource( 1 )
-material/0 = SubResource( 3 )
+material/0 = SubResource( 6 )
 
 [node name="StaticBody" parent="." index="2"]
 screen_size = Vector2( 4, 2 )
