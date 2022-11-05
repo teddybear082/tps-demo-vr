@@ -103,6 +103,9 @@ polygon_points = PoolVector2Array( 26.3687, -60.868, -21.2648, 34.8682, 17.8021,
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
 
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.8183, -1.0765, 78.7639 )
+
 [node name="Core" parent="." instance=ExtResource( 14 )]
 
 [node name="Structure" parent="." instance=ExtResource( 15 )]
@@ -355,6 +358,3 @@ shape = SubResource( 22 )
 [node name="ReactorWall8" type="Occluder" parent="Occluders"]
 transform = Transform( -0.267642, 0, 0.963518, 0, 1, 0, -0.963518, 0, -0.267642, 35.8579, 4.54071, -16.814 )
 shape = SubResource( 22 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.8183, -1.0765, 78.7639 )
