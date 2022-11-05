@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://menu/menu.gd" type="Script" id=1]
 [ext_resource path="res://menu/experiment.hdr" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://player/audio/opengameart/littlerobotsoundfactory/Electric Sound Library/Mp3/UI_Synth/UI_Synth_02.mp3" type="AudioStream" id=7]
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-xr-tools/functions/function_pointer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://menu/godot_vr_loading_screen.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/godot-xr-tools/functions/movement_turn.tscn" type="PackedScene" id=13]
 [ext_resource path="res://menu/screen_holder.gd" type="Script" id=15]
@@ -171,7 +172,6 @@ unit_db = -80.0
 [node name="Screenholder" type="Spatial" parent="."]
 script = ExtResource( 15 )
 vrCamera_path = NodePath("../FPController/ARVRCamera")
-use_definite_follow_time = true
 definite_follow_time_secs = 2.0
 
 [node name="ui_viewport2dto3d" parent="Screenholder" instance=ExtResource( 6 )]
@@ -186,6 +186,9 @@ transform = Transform( 0.803991, 0, 0, 0, 0.803991, 0, 0, 0, 0.803991, 0, 0, 0 )
 [node name="Occluder" type="Occluder" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.13546, 0 )
 shape = SubResource( 23 )
+
+[node name="LoadingScreen" parent="." instance=ExtResource( 10 )]
+enable_press_to_continue = true
 
 [editable path="FPController"]
 [editable path="BackgroundCache/Bullet"]

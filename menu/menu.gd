@@ -64,6 +64,7 @@ onready var loading_done_timer = loading.get_node(@"DoneTimer")
 
 func _ready():
 	$Screenholder.visible = false
+	$LoadingScreen.set_camera($FPController/ARVRCamera)
 	get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_EXPAND, Vector2(1920, 1080))
 	play_button.grab_focus()
 	var sound_effects = $BackgroundCache/RedRobot/SoundEffects
@@ -81,6 +82,10 @@ func _ready():
 	# Connect button pressed signals on controllers
 	$FPController/LeftHandController.connect("button_pressed", self, "_on_LeftHand_button_pressed")
 	$FPController/RightHandController.connect("button_pressed", self, "_on_RightHand_button_pressed")
+	
+	# Connect Loading Screen Signal for press to continue
+	$LoadingScreen.connect("continue_pressed", self, "_on_LoadingScreen_continue_pressed")
+	
 	
 	# Enable menu audio for button presses by connecting their pressed signals to receiver that will play the audio
 	
@@ -120,8 +125,8 @@ func _ready():
 		if child is Button:
 			child.connect("pressed", self, "_on_ui_button_pressed")
 	
-	yield(get_tree().create_timer(1.0), "timeout")
-	$Screenholder.visible = true
+	#yield(get_tree().create_timer(1.0), "timeout")
+	#$Screenholder.visible = true
 
 	_update_pointers()
 	
@@ -316,3 +321,11 @@ func _on_RightHand_button_pressed(button):
 	if which_pointer == "left" and button == $FPController/RightHandController/FunctionPointer.active_button:
 		which_pointer = "right"
 		_update_pointers()
+
+
+func _on_LoadingScreen_continue_pressed():
+	$LoadingScreen.follow_camera = false
+	$LoadingScreen.visible = false
+	yield(get_tree().create_timer(1.0), "timeout")
+	$Screenholder.stop_moving()
+	$Screenholder.visible = true
