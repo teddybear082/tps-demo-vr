@@ -10,7 +10,7 @@ export (XRTools.Buttons) var menu_button : int = XRTools.Buttons.VR_BUTTON_BY
 export (XRTools.Buttons) var arm_rotate_button : int = XRTools.Buttons.VR_BUTTON_BY
 
 
-onready var initial_position = transform.origin
+onready var initial_position = $FPController.transform.origin
 onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
 onready var xr_origin = $FPController
