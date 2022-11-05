@@ -125,9 +125,6 @@ func _ready():
 		if child is Button:
 			child.connect("pressed", self, "_on_ui_button_pressed")
 	
-	#yield(get_tree().create_timer(1.0), "timeout")
-	#$Screenholder.visible = true
-
 	_update_pointers()
 	
 func interactive_load(loader):
@@ -328,4 +325,6 @@ func _on_LoadingScreen_continue_pressed():
 	$LoadingScreen.visible = false
 	yield(get_tree().create_timer(1.0), "timeout")
 	$Screenholder.stop_moving()
+	if $Screenholder.transform.origin.y < 1.5:
+		$Screenholder.transform.origin.y = 1.5
 	$Screenholder.visible = true

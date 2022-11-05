@@ -56,6 +56,7 @@ func _process(dt):
 		movePosition = targetPosition;
 
 	look_at_from_position(currentPosition, camPos, Vector3(0,1,0));
-
+	
+		
 func stop_moving():
 	set_process(false)
